@@ -31,7 +31,7 @@ class Tests(BaseTest):
             m.get(net_url, json=self.mock_os_net_response())
             runner = CliRunner()
             result = runner.invoke(virl, ["up"])
-            print result.output
+            print "virl up result obj:" + str(result)
             self.assertEqual(0, result.exit_code)
 
     @patch("virl.cli.up.commands.call", auto_spec=False)
