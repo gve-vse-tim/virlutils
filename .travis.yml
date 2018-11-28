@@ -6,5 +6,6 @@ script:
   - make lint
   - make coverage
   - pip freeze
+  - ulimit -a
 after_success:
   - coveralls
