@@ -3,8 +3,7 @@ python:
   - "2.7"
 install: "pip install -r test-requirements.txt"
 script:
-  - mkdir -p .virl/default
-  - touch .virl/default/id
+  - touch topology.virl
   - make lint
   - make coverage
   - pip freeze
