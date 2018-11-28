@@ -1,3 +1,4 @@
+from __future__ import print_function
 from . import BaseTest
 from .mocks.github import MockGitHub
 from click.testing import CliRunner
@@ -31,7 +32,7 @@ class Tests(BaseTest):
             m.get(net_url, json=self.mock_os_net_response())
             runner = CliRunner()
             result = runner.invoke(virl, ["up"])
-            print "virl up result obj:" + str(result)
+            print("virl up result obj:" + str(result))
             self.assertEqual(0, result.exit_code)
 
     @patch("virl.cli.up.commands.call", auto_spec=False)

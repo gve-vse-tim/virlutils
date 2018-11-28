@@ -26,13 +26,14 @@ def up(repo=None, provision=False, **kwargs):
     wait_time = kwargs['wait_time']
 
     if os.path.exists(fname):
+        print "Enter IF"
         running = check_sim_running(env)
         if not running:
             click.secho('Creating {} environment from {}'.format(env, fname))
             with open(fname) as fh:
                 data = fh.read()
             server = VIRLServer()
-
+            print "Starting server"
             # we can expose fairly aribtary substitutions here...
             # anything that may differ usually related to networking....
             # <dirty hack>
