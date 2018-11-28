@@ -23,6 +23,21 @@ class Tests(BaseTest):
         except OSError:
             pass
 
+    def test_virl_up(self):
+        with requests_mock.mock() as m:
+            # Mock the request to return what we expect from the API.
+            up_url = 'http://localhost:19399/simengine/rest/launch'
+            m.post(up_url, json=self.mock_up_response())
+            net_url = 'http://localhost:19399/openstack/rest/networks'
+            m.get(net_url, json=self.mock_os_net_response())
+            topo_url = 'https://raw.githubusercontent.com/'
+            topo_url += 'default/master/topology.virl'
+            m.get(topo_url, json=MockGitHub.get_topology())
+            runner = CliRunner()
+            result = runner.invoke(virl, ["up"], catch_exceptions=False)
+            print("virl up result obj:" + str(result))
+            self.assertEqual(0, result.exit_code)
+
     @patch("virl.cli.up.commands.call", auto_spec=False)
     def test_virl_up_from_repo(self, call_mock):
 
@@ -43,18 +58,6 @@ class Tests(BaseTest):
             runner = CliRunner()
             runner.invoke(virl, ["up", "foo/bar"])
             call_mock.assert_called_with(['virl', 'up'])
-
-    def test_virl_up(self):
-        with requests_mock.mock() as m:
-            # Mock the request to return what we expect from the API.
-            up_url = 'http://localhost:19399/simengine/rest/launch'
-            m.post(up_url, json=self.mock_up_response())
-            net_url = 'http://localhost:19399/openstack/rest/networks'
-            m.get(net_url, json=self.mock_os_net_response())
-            runner = CliRunner()
-            result = runner.invoke(virl, ["up"], catch_exceptions=False)
-            print("virl up result obj:" + str(result))
-            self.assertEqual(0, result.exit_code)
 
     def mock_up_response(self):
         response = u'TEST_ENV'
