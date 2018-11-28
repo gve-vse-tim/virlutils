@@ -1,5 +1,6 @@
 from __future__ import print_function
 from . import BaseTest
+from . import debug_on
 from .mocks.github import MockGitHub
 from click.testing import CliRunner
 import requests_mock
@@ -23,6 +24,7 @@ class Tests(BaseTest):
         except OSError:
             pass
 
+    @debug_on()
     def test_virl_up(self):
         with requests_mock.mock() as m:
             # Mock the request to return what we expect from the API.
