@@ -2,3 +2,8 @@ coverage
 python-coveralls
 flake8
 requests_mock
+tabulate
+click
+jinja2
+lxml
+mock
