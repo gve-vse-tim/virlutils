@@ -1,3 +1,4 @@
+from __future__ import print_function
 import click
 from subprocess import call
 from virl.api import VIRLServer
@@ -25,15 +26,16 @@ def up(repo=None, provision=False, **kwargs):
     env = kwargs['e']
     wait_time = kwargs['wait_time']
 
+    print("Before IF")
     if os.path.exists(fname):
-        print "Enter IF"
+        print("Enter IF")
         running = check_sim_running(env)
         if not running:
             click.secho('Creating {} environment from {}'.format(env, fname))
             with open(fname) as fh:
                 data = fh.read()
             server = VIRLServer()
-            print "Starting server"
+            print("Starting server")
             # we can expose fairly aribtary substitutions here...
             # anything that may differ usually related to networking....
             # <dirty hack>
