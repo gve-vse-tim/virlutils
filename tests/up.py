@@ -29,6 +29,9 @@ class Tests(BaseTest):
             m.post(up_url, json=self.mock_up_response())
             net_url = 'http://localhost:19399/openstack/rest/networks'
             m.get(net_url, json=self.mock_os_net_response())
+            topo_url = 'https://raw.githubusercontent.com/'
+            topo_url += 'default/master/topology.virl'
+            m.get(topo_url, json=MockGitHub.get_topology())
             runner = CliRunner()
             result = runner.invoke(virl, ["up"])
             self.assertEqual(0, result.exit_code)
