@@ -91,7 +91,7 @@ def up(repo=None, provision=False, **kwargs):
     else:
         # try to pull from virlfiles
         if repo:
-            call(['virl', 'pull', repo], shell=True)
+            call(['virl', 'pull', repo])
             call(['virl', 'up'])
         else:
             click.secho('Could not find topology.virl. Maybe try -f', fg="red")
