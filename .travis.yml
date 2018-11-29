@@ -5,7 +5,9 @@ install: "pip install -r test-requirements.txt"
 script:
   - make lint
   - python setup.py build
+  - find . -name virl -ls
   - python setup.py install
+  - find . -name virl -ls
   - make coverage
   - pip freeze
 after_success:
