@@ -3,7 +3,7 @@ python-coveralls
 flake8
 requests_mock
 tabulate
-click
+click==6.7
 jinja2
 lxml
 mock
