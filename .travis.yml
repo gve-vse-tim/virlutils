@@ -3,11 +3,9 @@ python:
   - "2.7"
 install: "pip install -r test-requirements.txt"
 script:
-  - echo $PATH
+  - export PATH=.:$PATH
   - make lint
   - make coverage
-  - find . -name virl -print
   - pip freeze
-  - ulimit -a
 after_success:
   - coveralls
