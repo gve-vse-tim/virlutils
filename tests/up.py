@@ -33,7 +33,7 @@ class Tests(BaseTest):
             topo_url += 'default/master/topology.virl'
             m.get(topo_url, json=MockGitHub.get_topology())
             runner = CliRunner()
-            result = runner.invoke(virl, ["up"])
+            result = runner.invoke(virl, ["up"], catch_exceptions=False)
             self.assertEqual(0, result.exit_code)
 
     @patch("virl.cli.up.commands.call", auto_spec=False)

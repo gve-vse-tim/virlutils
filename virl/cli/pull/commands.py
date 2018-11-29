@@ -1,3 +1,5 @@
+from __future__ import print_function
+import sys
 import click
 import requests
 
@@ -11,6 +13,7 @@ def pull(repo, **kwargs):
     click.secho("Pulling from {}".format(repo))
     url = "https://raw.githubusercontent.com/"
     url = url + "{}/master/topology.virl".format(repo)
+    print(url, file=sys.stderr)
     resp = requests.get(url)
     if resp.ok:
         with open('topology.virl', 'w') as fh:
