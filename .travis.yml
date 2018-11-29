@@ -4,9 +4,9 @@ python:
 install: "pip install -r test-requirements.txt"
 script:
   - make lint
+  - python setup.py build
+  - python setup.py install
   - make coverage
-  - ls -alR virl
-  - umask
   - pip freeze
 after_success:
   - coveralls
