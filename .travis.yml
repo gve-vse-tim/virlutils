@@ -6,7 +6,7 @@ script:
   - export PATH=.:$PATH
   - make lint
   - make coverage
-  - ls -al virl
+  - ls -alr virl
   - umask
   - pip freeze
 after_success:
